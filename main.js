@@ -19,12 +19,11 @@ Unary.undefined = function(operand) {
  * Simple
  */
 Unary.not = function(operand) {
+  checkOperands([operand])
   if (typeof operand === 'boolean') {
     return !operand
   } else if (operand === undefined) {
     return undefined
-  } else {
-    throw('illegal ternary expression.')
   }
 }
 
@@ -37,6 +36,7 @@ Unary.identity = function(operand) {
  */
 var Decode = new Object()
 Decode.true = function(operand) {
+  checkOperands([operand])
   if (operand === true) {
     return true
   } else {
@@ -45,6 +45,7 @@ Decode.true = function(operand) {
 }
 
 Decode.false = function(operand) {
+  checkOperands([operand])
   if (operand === false) {
     return true
   } else {
@@ -53,6 +54,7 @@ Decode.false = function(operand) {
 }
 
 Decode.undefined = function(operand) {
+  checkOperands([operand])
   if (operand === undefined) {
     return true
   } else {
@@ -66,6 +68,7 @@ Unary.decode = Decode
  * Increment/Decrement
  */
 Unary.increment = function(operand) {
+  checkOperands([operand])
   if (operand === false) {
     return undefined
   } else if (operand === undefined) {
@@ -76,6 +79,7 @@ Unary.increment = function(operand) {
 }
 
 Unary.decrement = function(operand) {
+  checkOperands([operand])
   if (operand === false) {
     return true
   } else if (operand === undefined) {

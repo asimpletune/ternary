@@ -1,4 +1,81 @@
-var d = require('./main.js').Didadic
+var Ternary = require('./main.js')
+var u = Ternary.Unary
+var d = Ternary.Didadic
+
+testUnary()
+testDidadic()
+
+function testUnary() {
+  falseTest()
+  trueTest()
+  undefinedTest()
+  notTest()
+  identityTest()
+  incrementTest()
+  decrementTest()
+}
+
+function falseTest() {
+  console.log('false test:', Boolean(
+    u.false(false) === false &
+    u.false(undefined) === false &
+    u.false(true) === false
+  ) ? 'PASS' : 'FAIL')
+}
+
+function trueTest() {
+  console.log('true test:', Boolean(
+    u.true(false) === true &
+    u.true(undefined) === true &
+    u.true(true) === true
+  ) ? 'PASS' : 'FAIL')
+}
+
+function undefinedTest() {
+  console.log('undefined test:', Boolean(
+    u.undefined(false) === undefined &
+    u.undefined(undefined) === undefined &
+    u.undefined(true) === undefined
+  ) ? 'PASS' : 'FAIL')
+}
+
+function notTest() {
+  console.log('not test:', Boolean(
+    u.not(false) === true &
+    u.not(undefined) === undefined &
+    u.not(true) === false
+  ) ? 'PASS' : 'FAIL')
+}
+
+function identityTest() {
+  console.log('identity test:', Boolean(
+    u.identity(false) === false &
+    u.identity(undefined) === undefined &
+    u.identity(true) === true
+  ) ? 'PASS' : 'FAIL')
+}
+
+function incrementTest() {
+  console.log('increment test:', Boolean(
+    u.increment(false) === undefined &
+    u.increment(undefined) === true &
+    u.increment(true) === false
+  ) ? 'PASS' : 'FAIL')
+}
+
+function decrementTest() {
+  console.log('decrement test:', Boolean(
+    u.decrement(false) === true &
+    u.decrement(undefined) === false &
+    u.decrement(true) === undefined
+  ) ? 'PASS' : 'FAIL')
+}
+
+function testDidadic() {
+  testXOR()
+  testAND()
+  testOR()
+}
 
 function testOR() {
   console.log('OR Test:', Boolean(
@@ -10,7 +87,7 @@ function testOR() {
     d.or(true, undefined) === true &
     d.or(false, true) === true &
     d.or(undefined, true) === true &
-    d.or(true, true) === true) ? 'PASS' : 'FAIL');
+    d.or(true, true) === true) ? 'PASS' : 'FAIL')
 }
 
 function testAND() {
@@ -23,7 +100,7 @@ function testAND() {
     d.and(true, undefined) === undefined &
     d.and(false, true) === false &
     d.and(undefined, true) === undefined &
-    d.and(true, true) === true) ? 'PASS' : 'FAIL');
+    d.and(true, true) === true) ? 'PASS' : 'FAIL')
 }
 
 function testXOR() {
@@ -36,9 +113,11 @@ function testXOR() {
     d.xor(true, undefined) === undefined &
     d.xor(false, true) === true &
     d.xor(undefined, true) === undefined &
-    d.xor(true, true) === false) ? 'PASS' : 'FAIL');
+    d.xor(true, true) === false) ? 'PASS' : 'FAIL')
 }
 
-testXOR()
-testAND()
-testOR()
+function testDidadic() {
+  testXOR()
+  testAND()
+  testOR()
+}
