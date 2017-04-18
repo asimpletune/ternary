@@ -24,7 +24,7 @@ Unary.not = function(operand) {
   } else if (operand === undefined) {
     return undefined
   } else {
-    throw("illegal ternary expression.")
+    throw('illegal ternary expression.')
   }
 }
 
@@ -85,4 +85,48 @@ Unary.decrement = function(operand) {
   }
 }
 
-module.exports = Unary
+var Didadic = new Object()
+
+/**
+ * And, or, xor
+ */
+Didadic.and = function(A, B) {
+  checkOperands([A, B])
+  if (typeof A === 'boolean') {
+    return A && B
+  } else {
+    return B && A
+  }
+}
+
+Didadic.or = function(A, B) {
+  checkOperands([A, B])
+  if (typeof A === 'boolean') {
+    return A || B
+  } else {
+    return B || A
+  }
+}
+
+Didadic.xor = function(A, B) {
+  checkOperands([A, B])
+  if (A === undefined || B === undefined) {
+    return undefined
+  } else {
+    return Boolean(A ^ B)
+  }
+}
+
+/**
+ * Helpers
+ */
+function checkOperands(operands) {
+  if (operands.length <= 0) return
+  var op = operands[0]
+  if (!(typeof op === 'boolean' || op === undefined)) {
+    throw("Impropers operand types")
+  }
+  checkOperands(operands.slice(1))
+}
+
+module.exports = { Didadic, Unary }
